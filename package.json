@@ -1,0 +1,21 @@
+{
+  "name": "homemaking",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tim-upload-plugin": "^1.0.6",
+    "tim-wx-sdk": "^2.24.1",
+    "tim-wx-sdk-ws": "^2.12.0",
+    "mobx-miniprogram": "4.13.2",
+    "mobx-miniprogram-bindings": "2.0.0"
+  }
+}

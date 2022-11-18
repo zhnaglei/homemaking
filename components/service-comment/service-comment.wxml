@@ -1,0 +1,19 @@
+<view class="container">
+    <view class="row">
+        <view class="author">
+            <i-avatar size="60" shape="circle" src="{{comment.author.avatar}}" text="{{comment.author.nickname}}"></i-avatar>
+        </view>
+        <view class="create-time">
+            {{comment.create_time}}
+        </view>
+    </view>
+    <view class="score">
+        评分: <i-rating count="{{5}}" selected="{{comment.score}}" size="36"></i-rating>
+    </view>
+    <view class="content">{{comment.content}}</view>
+    <view wx:if="{{comment.illustration.length}}" class="illustration">
+        <block wx:for="{{comment.illustration}}" wx:key="index">
+            <image class="illustration-image" src="{{item}}" bind:tap="handlePreview" data-index="{{index}}"></image>
+        </block>
+    </view>
+</view>

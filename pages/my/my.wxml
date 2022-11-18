@@ -1,0 +1,19 @@
+<view class="container">
+    <view class="header">
+        <i-avatar
+                src="{{userInfo.avatar}}"
+                text="{{userInfo.nickname}}"
+                shape="circle"
+                fontSize="34"
+                bind:tap="handleToLogin"
+        ></i-avatar>
+    </view>
+    <view>
+        <i-grid title="预约我的" extend="查看全部">
+            <i-grid-item text="111" icon="biaoqian"></i-grid-item>
+            <i-grid-item text="22" icon="biaoqian"></i-grid-item>
+            <i-grid-item text="33" icon="biaoqian"></i-grid-item>
+            <i-grid-item text="44" icon="biaoqian"></i-grid-item>
+        </i-grid>
+    </view>
+</view>

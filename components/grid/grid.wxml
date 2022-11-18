@@ -1,0 +1,9 @@
+<view class="container">
+    <view class="header" wx:if="{{title || extend}}">
+        <view class="title" wx:if="{{title}}">{{title}}</view>
+        <view class="extend" wx:if="{{extend}}" bind:tap="handleExtend">{{extend}}</view>
+    </view>
+    <view style="width: {{100 / rowNum}}%">
+        <slot></slot>
+    </view>
+</view>

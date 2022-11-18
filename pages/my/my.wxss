@@ -1,0 +1,10 @@
+.container {
+
+}
+
+.header{
+    box-sizing: border-box;
+    height: 240rpx;
+    background: #f3d066;
+    padding: 30rpx;
+}

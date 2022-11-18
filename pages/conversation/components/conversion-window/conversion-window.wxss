@@ -1,0 +1,27 @@
+.container{
+    font-size: 20rpx;
+}
+
+.action-bar{
+    background-color: #efefef;
+    box-sizing: border-box;
+    border-top: 1px solid #dedede;
+    padding: 30rpx;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+}
+
+.inner-container{
+    display: flex;
+    align-items: center;
+}
+
+.conversion-textarea{
+    width: 100%;
+    background-color: #fff;
+    padding: 20rpx;
+    margin: 0 20rpx;
+    border-radius: 10rpx;
+}

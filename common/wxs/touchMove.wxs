@@ -1,0 +1,31 @@
+// js Es5语法 wx.
+var touchStartX
+function handleTouchStart (event){
+    console.log(event)
+    // 数据绑定，记录触摸开始x轴位置
+    touchStartX = event.changedTouches[0].clientX;
+}
+function handleTouchend (event, ownerInstance){
+    var touchEndX = event.changedTouches[0].clientX;
+    // 负数向左划动， 正数向右划动
+    var distance = touchEndX - touchStartX;
+    // -1 后退（向右划）0：不动 1；前进（向左划）
+    var direction = 0
+    if(distance < 0 && distance < -70){
+        // 左划
+        direction = 1
+    }
+    if(distance > 0 && distance > 70) {
+        //右划
+        direction = -1
+    }
+    if(direction !== 0) {
+        // 1. 触发事件 2。 直接调用引用该wxs 页面或者组件的方法
+        ownerInstance.callMethod('handleTouchMove', {direction: direction})
+    }
+}
+
+module.exports = {
+    handleTouchStart: handleTouchStart,
+    handleTouchend:handleTouchend
+}

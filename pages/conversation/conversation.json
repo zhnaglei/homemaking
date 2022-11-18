@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "i-conversion-window": "components/conversion-window/conversion-window"
+  }
+}

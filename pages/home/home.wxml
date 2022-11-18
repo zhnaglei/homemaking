@@ -1,0 +1,23 @@
+<import src="home.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+<view class="container">
+    <i-tabs tabs="{{tabs}}" bind:change="handleTabChange">
+        <view slot="extend">
+            <view class="category">
+                <swiper style="height:150rpx" display-multiple-items="{{2}}" next-margin="60rpx">
+                    <swiper-item wx:for="{{categoryList}}" wx:key="index" bind:tap="handleCategoryChange" data-id="{{item.id}}">
+                        <view class="category-swiper-item">
+                            <text class="category-name">{{item.name}}</text>
+                        </view>
+                    </swiper-item>
+                </swiper>
+            </view>
+        </view>
+        <view slot="panel">
+            <view class="service-preview" wx:for="{{servicelist}}" bind:tap="handleSelectService" data-service="{{item}}" wx:key="index">
+                <i-service-preview service="{{item}}"></i-service-preview>
+            </view>
+            <i-show-status show="{{servicelist.length < 1}}" content="暂时还没有任何服务" top="220"></i-show-status>
+        </view>
+    </i-tabs>
+</view>
