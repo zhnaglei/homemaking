@@ -6,7 +6,7 @@ const { config } = require('./config');
         type: config.compileType,
         projectPath: config.projectPath,
         privateKeyPath: config.privateKeyPath,
-        ignores: ['node_modules/**/*', `${config.cloudFuncRoot}**/*`, 'scripts/*'],
+        ignores: ['node_modules/**/*', `${config.cloudFuncRoot}**/*`,`${config.cloudFuncLib}`, 'scripts/*'],
     })
     const uploadResult = await ci.upload({
         project,
