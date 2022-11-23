@@ -12,10 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tim-upload-plugin": "^1.0.6",
-    "tim-wx-sdk": "^2.24.1",
-    "tim-wx-sdk-ws": "^2.12.0",
     "mobx-miniprogram": "4.13.2",
-    "mobx-miniprogram-bindings": "2.0.0"
+    "mobx-miniprogram-bindings": "2.0.0",
+    "tim-upload-plugin": "^1.0.6",
+    "tim-wx-sdk-ws": "^2.12.0"
+  },
+  "devDependencies": {
+    "miniprogram-ci": "^1.8.35"
   }
 }
