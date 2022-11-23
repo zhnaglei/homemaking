@@ -1,10 +1,41 @@
 .container {
-
+    padding-bottom: 200rpx;
 }
 
-.header{
+.header {
     box-sizing: border-box;
     height: 240rpx;
     background: #f3d066;
-    padding: 30rpx;
+    padding: 30rpx 0 30rpx 30rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.personal-info{
+    display: flex;
+    align-items: center;
+}
+.score-tag{
+    margin-left: 20rpx;
+    font-size: 22rpx;
+    background-color: #333333;
+    color: #f3d066;
+    border-radius: 40rpx;
+    padding: 6rpx 20rpx;
+}
+.sign-in-tag{
+    background: #333333;
+    padding: 10rpx 30rpx 10rpx 40rpx;
+    border-radius: 40rpx 0 0 40rpx;
+    color: #f3d600;
+    font-size: 28rpx;
+    height: 40rpx;
+}
+
+.main {
+    padding: 0rpx 30rpx;
+}
+
+.grid-container {
+    margin-top: 30rpx;
 }

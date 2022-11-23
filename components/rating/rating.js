@@ -1,3 +1,5 @@
+import {getEventParam} from "../../utils/utils";
+
 Component({
     properties: {
         count: {
@@ -25,6 +27,18 @@ Component({
             value: 'star'
         }
     },
-    data: {},
-    methods: {}
+    data: {
+        currentIndex: -1
+    },
+    methods: {
+        handleSelect: function (event) {
+            if(this.data.selected > 0) return
+            const index = getEventParam(event, 'index')
+            this.setData({
+                currentIndex: index
+            })
+            const score = index + 1
+            this.triggerEvent('rating',{rating: score})
+        }
+    }
 });

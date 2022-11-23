@@ -3,7 +3,12 @@
     "compileType": "miniprogram",
     "libVersion": "2.27.1",
     "packOptions": {
-        "ignore": [],
+        "ignore": [
+            {
+                "value": "common/cf-lib",
+                "type": "folder"
+            }
+        ],
         "include": []
     },
     "setting": {
@@ -24,5 +29,7 @@
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4
-    }
+    },
+    "cloudfunctionRoot": "cloudfunctions/",
+    "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

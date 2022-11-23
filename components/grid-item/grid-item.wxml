@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" bind:tap="handleSelect">
     <i-badge show="{{showBadge}}" count="{{badgeCount}}">
         <i-icon wx:if="{{icon}}" name="{{icon}}" color="#333333" size="{{iconSize}}"></i-icon>
         <view>{{text}}</view>

@@ -4,7 +4,7 @@ Component({
         count: Number,
         type: {
             type: String,
-            value: 'right-top'
+            value: 'top-right'
         }
     },
     data: {},

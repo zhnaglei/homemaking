@@ -1,6 +1,7 @@
 import Token from "./token";
 import Http from "../utils/http";
 import cache from "../enum/cache";
+import cloudFunc from "../enum/cloud-func";
 
 class User {
     static getUserInfoByLocal() {
@@ -22,6 +23,16 @@ class User {
             method: 'PUT'
         })
         wx.setStorageSync(cache.USER_INFO, res)
+    }
+    static async signIn() {
+        return  await Http.request({
+            url: cloudFunc.SIGN_IN
+        })
+    }
+    static async getUserScore() {
+        return await Http.request({
+            url: cloudFunc.GET_USER_SCORE
+        })
     }
 }
 

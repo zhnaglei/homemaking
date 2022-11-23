@@ -5,18 +5,12 @@ import cache from "../enum/cache";
 import User from "../model/user";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import {timStore} from "../store/tim";
+import cloudFunc from "../enum/cloud-func";
 class Http{
     static async request({url,data,method='GET', refetch=true}){
         let res;
         try {
-             res = await wxToPromise('request', {
-                url: APIConfig.baseUrl + url,
-                data,
-                method,
-                header:{
-                    token: wx.getStorageSync(cache.TOKEN)
-                }
-            })
+             res = await this._dispatch(url,data,method)
         }catch (e) {
             console.log(e)
             this._showError(-1)
@@ -58,6 +52,40 @@ class Http{
         const error = this._generateMessage(res.data.message)
         throw new Error(error)
     }
+    static async _dispatch(url, data, method) {
+        const isCloudFunc = Object.values(cloudFunc).includes(url)
+        let res = {}
+        if (!isCloudFunc) {
+            res = await wxToPromise('request', {
+                url: APIConfig.baseUrl + url,
+                data,
+                method,
+                header: {
+                    token: wx.getStorageSync(cache.TOKEN)
+                }
+            })
+        } else {
+            const cloudFuncRes = await wx.cloud.callFunction({ name: url, data: data })
+            res.data = cloudFuncRes.result
+            let statusCode = 400
+            switch (cloudFuncRes.result.error_code) {
+                case 0:
+                    statusCode = 200
+                    break
+                case 10001:
+                case 10002:
+                    statusCode = 401
+                    break
+                case 10025:
+                    statusCode = 500
+                    break
+            }
+            res.statusCode = statusCode
+        }
+        return res
+    }
+
+
     static async _refetch(data){
         await User.login()
         data.refetch = false

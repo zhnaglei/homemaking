@@ -18,6 +18,21 @@ function throttle(callback, duration = 500) {
     }
 }
 
+/**
+ *
+ * @param callback
+ * @param interval
+ * @returns {(function(): void)|*}
+ */
+function debounce(callback, interval = 500) {
+    let timer
+    return function () {
+        clearTimeout(timer);
+        timer = setTimeout( ()=> {
+            callback.call(this, ...arguments);
+        }, interval);
+    };
+}
 //获取事件回调参数的自定义属性
 function getDataSet(event, target) {
     return event.currentTarget.dataset[target]
@@ -26,5 +41,5 @@ function getDataSet(event, target) {
 function getEventParam(event, target) {
     return event.detail[target]
 }
-export { throttle, getDataSet ,getEventParam}
+export { throttle, getDataSet ,debounce,getEventParam}
 

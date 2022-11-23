@@ -121,6 +121,7 @@ Component({
                 try{
                     const res =  await FileUploader.upload(file.path, file.key)
                     file.id = res[0].id
+                    file.url = res[0].path
                     file.status = this.data.uploadStatusEnum.SUCCESS
                     //由于页面状态改变， 找到这条数据重新赋值
                     this.data._files[file.key] = file

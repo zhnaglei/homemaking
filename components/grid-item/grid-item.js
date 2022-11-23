@@ -1,10 +1,10 @@
 Component({
+    relations: {
+        '../grid/grid': {
+            type: 'parent',
+        }
+    },
     properties: {
-        relations: {
-            '../grid/grid': {
-                type: 'parent',
-            }
-        },
         icon: String,
         iconSize: {
             type: String,
@@ -16,5 +16,18 @@ Component({
         cell: Object
     },
     data: {},
-    methods: {}
+    methods: {
+        handleSelect: function (){
+            this.triggerEvent('select',
+                {
+                    cell: this.data.cell
+                },
+                {
+                    //事件冒泡
+                    bubbles: true,
+                    composed: true
+                }
+             )
+        }
+    }
 });

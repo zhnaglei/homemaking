@@ -54,7 +54,29 @@ class Service extends Base{
             method: 'PUT'
         })
     }
-
+    static getServiceStatus(type){
+        return Http.request({
+            url:`v1/service/count?type=${type}`
+        })
+    }
+    async getMyService(type, status) {
+        if (!this.hasMoreData) {
+            return this.data
+        }
+        const serviceList = await Http.request({
+            url: 'v1/service/my',
+            data: {
+                page: this.page,
+                count: this.count,
+                type,
+                status
+            }
+        })
+        this.data = this.data.concat(serviceList.data)
+        this.hasMoreData = this.page !== serviceList.last_page
+        this.page++
+        return this.data
+    }
 }
 
 export default Service
