@@ -1,5 +1,5 @@
 const cloudFunc = {
-    SIGN_IN: 'signin',
+    SIGN_IN: 'signIn',
     GET_USER_SCORE: 'getUserScore'
 }
 
