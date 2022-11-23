@@ -1,0 +1,37 @@
+# 工作流名称，可自定义
+name: Upload Miniprogram
+# 监听 main 分支的 push 事件
+on:
+  push:
+    branches:
+      - "master"
+# 定义一个流程作业
+jobs:
+  # 作业 ID，可自定义
+  upload:
+    # 指定作业运行需要的容器环境
+    runs-on: ubuntu-latest
+    # 配置一个环境变量，从 GitHub 获取自定义的 secret，用于后续生成上传的秘钥文件
+    env:
+      UPLOAD_SECRET: ${{ secrets.UPLOAD_SECRET }}
+    # 定义作业内包含的步骤
+    steps:
+      # 步骤一，调用了一个官方封装好的 Actions 实现拉取仓库代码
+      - uses: actions/checkout@v2
+      # 步骤二，执行 shell 命令
+      # 1. 使用 Linux echo 命令将环境变量的内容输出到scripts/secret.key文件中
+      # 2. 使用 Linux jq 命令读取本次 push 事件信息的 json 文件，提取其中的节点信息然后写入scripts/desc.txt文件
+      - run: |
+          echo "$UPLOAD_SECRET" > scripts/secret.key
+          echo $(jq --raw-output .head_commit.message "$GITHUB_EVENT_PATH") > scripts/desc.txt
+      # 步骤三，调用了一个官方封装好的 Actions 实现安装 node
+      - uses: actions/setup-node@main
+        # 指定安装时的 node 版本
+        with:
+          node-version: '12.20.0'
+      # 步骤四，执行 shell 命令，安装项目依赖包
+      - run: npm install
+      # 步骤五，执行 shell 命令，使用 Linux 的 sed 命令替换 miniprogram-ci 源码中的BUG代码片段
+      - run: sed -i 's/setTimeout/((callback,delay) => {return setTimeout(callback,delay).unref();})/g' node_modules/miniprogram-ci/dist/cloud/uploadFunction.js
+      # 步骤六，执行 shell 命令，构建、上传项目
+      - run: npm run wx:all
