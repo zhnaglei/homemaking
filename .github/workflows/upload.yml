@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-node@main
         # 指定安装时的 node 版本
         with:
-          node-version: '12.20.0'
+          node-version: '16.0.0'
       # 步骤四，执行 shell 命令，安装项目依赖包
       - run: npm install
       # 步骤五，执行 shell 命令，使用 Linux 的 sed 命令替换 miniprogram-ci 源码中的BUG代码片段
