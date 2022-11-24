@@ -1,16 +1,17 @@
+const ci = require('miniprogram-ci')
+const { config } = require('./config')
 const fs = require('fs')
-const ci = require('miniprogram-ci');
-const { config } = require('./config');
-(async () => {
+
+;(async () => {
     const project = new ci.Project({
         appid: config.appid,
         type: config.compileType,
         projectPath: config.projectPath,
         privateKeyPath: config.privateKeyPath,
-        ignores: ['node_modules/**/*', `${config.cloudFuncRoot}**/*`,`${config.cloudFuncLib}`, 'scripts/*'],
+        ignores: ['node_modules/**/*', `${config.cloudFuncRoot}**/*`, `${config.cloudFuncLib}/**/*`, 'scripts/*'],
     })
 
-    const descTextBuffer = fs.readFileSync(config.descTextPath)
+    const descTextBuffer = fs.readFileSync(config.descTextPath);
 
     const uploadResult = await ci.upload({
         project,
